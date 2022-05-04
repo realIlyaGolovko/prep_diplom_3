@@ -16,7 +16,7 @@ public class MainHeaderPage {
 
 
     @Step("Клик по кнопке «Личный Кабинет»")
-    public static void clickPersonalAreaButton() {
+    public  void clickPersonalAreaButton() {
         personalAreaButton.click();
     }
 }

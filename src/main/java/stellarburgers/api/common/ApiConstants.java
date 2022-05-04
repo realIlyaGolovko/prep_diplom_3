@@ -1,7 +1,7 @@
 package stellarburgers.api.common;
 
 // константы с урл окружения и эндпоинтов
-public class Constants {
+public class ApiConstants {
     //урл стенда
     public static final String BASE_URL = "https://stellarburgers.nomoreparties.site/";
     //урл для создания нового пользователя
