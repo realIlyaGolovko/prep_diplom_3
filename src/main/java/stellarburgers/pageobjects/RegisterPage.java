@@ -9,19 +9,19 @@ import org.openqa.selenium.support.How;
 public class RegisterPage {
     //локатор поля ввода "Имя"
     @FindBy(how = How.XPATH, using = ".//label[text()='Имя']/../input")
-    private SelenideElement nameInputField;
+    private static SelenideElement nameInputField;
     //локатор поля ввода "Email"
     @FindBy(how = How.XPATH, using = ".//label[text()='Email']/../input")
-    private SelenideElement emailInputField;
+    private static SelenideElement emailInputField;
     //локатор поля ввода "Пароль"
     @FindBy(how = How.XPATH, using = ".//label[text()='Пароль']/../input")
-    private SelenideElement passwordInputField;
+    private static SelenideElement passwordInputField;
     //локатор кнопки "Зарегистрироваться"
     @FindBy(how = How.XPATH, using = ".//button[text()='Зарегистрироваться']")
-    private SelenideElement registerButton;
+    private static SelenideElement registerButton;
     //локатор надписи "Некорректный пароль"
     @FindBy(how = How.XPATH,using = ".//p[text()='Некорректный пароль']")
-    private SelenideElement errorPasswordMsg;
+    private static SelenideElement errorPasswordMsg;
 
 
 
@@ -34,7 +34,7 @@ public class RegisterPage {
 
     @Step("Ввод значения {email} в поле 'Email'")
     public void setEmail (String email) {
-        nameInputField.click();
+        emailInputField.click();
         emailInputField.setValue(email);
     }
 
