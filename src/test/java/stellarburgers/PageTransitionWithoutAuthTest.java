@@ -44,6 +44,5 @@ public class PageTransitionWithoutAuthTest extends CommonTest {
         mainHeaderPage.clickPersonalAreaButton();
         mainHeaderPage.clickLogoLink();
         Assert.assertEquals("Соберите бургер",mainPage.getHeadingCreateBurger());
-
     }
 }

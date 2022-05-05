@@ -21,12 +21,14 @@ import static stellarburgers.pageobjects.PageConstants.MAIN_PAGE_URL;
 public class PageTransitionWithAuthTest extends CommonTest {
     private static User user;
     private static UserClient userClient;
+    private static String token;
     private static MainPage mainPage;
     private static MainHeaderPage mainHeaderPage;
-    private static String token;
+    private static LoginPage loginPage;
+
 
     @Before
-    public void openMainPage() {
+    public void setUP() {
         user = User.getRandomUserWithGivenPassword(6, 12);
         UserCredentials userCredentials = UserCredentials.from(user);
         userClient = new UserClient();
@@ -34,10 +36,11 @@ public class PageTransitionWithAuthTest extends CommonTest {
         mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainHeaderPage = page(MainHeaderPage.class);
         mainHeaderPage.clickPersonalAreaButton();
-        LoginPage loginPage = page(LoginPage.class);
+        loginPage = page(LoginPage.class);
         loginPage.fillLoginForm(userCredentials.getEmail(), userCredentials.getPassword());
         ValidatableResponse validatableResponse = userClient.login(userCredentials);
         token = validatableResponse.extract().jsonPath().getString("accessToken");
+        mainHeaderPage.clickPersonalAreaButton();
     }
 
     @After
@@ -48,7 +51,6 @@ public class PageTransitionWithAuthTest extends CommonTest {
     @DisplayName("Переход по клику на 'Личный кабинет' с предварительной авторизацией")
     @Test
     public void UserCanTransitionInPersonalAreaWithAuth() {
-        mainHeaderPage.clickPersonalAreaButton();
         ProfilePage profilePage = page(ProfilePage.class);
         profilePage.clickProfileLink();
     }
@@ -56,7 +58,6 @@ public class PageTransitionWithAuthTest extends CommonTest {
     @DisplayName("Переход по клику на 'Конструктор' из личного кабинета с предварительной авторизацией")
     @Test
     public void UserCanTransitionInConstructorWithAuth() {
-        mainHeaderPage.clickPersonalAreaButton();
         mainHeaderPage.clickConstructorLink();
         Assert.assertEquals("Соберите бургер", mainPage.getHeadingCreateBurger());
     }
@@ -64,8 +65,14 @@ public class PageTransitionWithAuthTest extends CommonTest {
     @DisplayName("Переход по клику на 'логотип Stellar Burgers' из личного кабинета с предварительной авторизацией")
     @Test
     public void UserCanTransitionInLogoWithAuth() {
-        mainHeaderPage.clickPersonalAreaButton();
         mainHeaderPage.clickLogoLink();
         Assert.assertEquals("Соберите бургер", mainPage.getHeadingCreateBurger());
+    }
+    @Test
+    @DisplayName("Выход по кнопке 'Выйти' в личном кабинете")
+    public void UserCanSignOutWithClickExitButton(){
+        ProfilePage profilePage = page(ProfilePage.class);
+        profilePage.clickExitButton();
+        Assert.assertEquals("Вход",loginPage.getHeadingSearchLogin());
     }
 }
