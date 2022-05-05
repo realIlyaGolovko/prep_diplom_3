@@ -26,12 +26,12 @@ public class MainHeaderPage {
     }
 
     @Step("Клик по кнопке «Конструктор»")
-    public static void clickConstructorLink() {
+    public void clickConstructorLink() {
         constructorLink.shouldBe(enabled).click();
     }
 
     @Step("Клик по логотипу Stellar Burgers")
-    public static void clickLogoLink() {
+    public  void clickLogoLink() {
         logo.shouldBe(enabled).click();
     }
 }
