@@ -1,5 +1,6 @@
 package stellarburgers.pageobjects;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,9 @@ import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exactText;
 
 public class MainPage {
+    //локатор заголовка "Соберите бургер"
+    @FindBy (how = How.XPATH, using = ".//h1[text()='Соберите бургер']")
+    private static SelenideElement headingCreateBurger;
     //локатор кнопки "Войти в аккаунт"
     @FindBy(how = How.XPATH, using = ".//button[text()='Войти в аккаунт']")
     private static SelenideElement signInButton;
@@ -32,7 +36,11 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = ".//h2[text()='Начинки']")
     private static SelenideElement fillingSection;
 
-
+    @Step("Получение текста заголовка 'Соберите бургер'")
+    public String getHeadingCreateBurger(){
+        headingCreateBurger.shouldBe(Condition.visible);
+        return headingCreateBurger.getText();
+    }
     @Step("Клик по кнопке 'Войти в аккаунт'")
     public void clickSignInButton() {
         signInButton.scrollTo();
