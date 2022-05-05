@@ -22,16 +22,7 @@ public class User {
         this.password = password;
         this.name = name;
     }
-    @Step("Инициализировали нового пользователя с  валидными рандомными данными")
-    public static User getRandomUser() {
-        String email = faker.internet().emailAddress();
-        Allure.addAttachment("email", email);
-        String password = faker.internet().password(6,12,true,true,true);
-        Allure.addAttachment("password", password);
-        String name = faker.name().firstName();
-        Allure.addAttachment("name", name);
-        return new User(email, password, name);
-    }
+
     @Step("Инициализировали нового пользователя с заданной длиной пароля")
     public static User getRandomUserWithGivenPassword(int minPasswordLength,int maxPasswordLength) {
         String email = faker.internet().emailAddress();

@@ -1,11 +1,15 @@
 package stellarburgers.pageobjects;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class LoginPage {
+    //локатор заголовка "Вход"
+    @FindBy (how = How.XPATH, using = ".//h2[text()='Вход']")
+    private static SelenideElement headingSearchLogin;
     //локатор поля ввода "Email"
     @FindBy(how = How.XPATH, using = ".//label[text()='Email']/../input")
     private static SelenideElement emailInputField;
@@ -22,6 +26,11 @@ public class LoginPage {
     @FindBy(how = How.LINK_TEXT, using = "Восстановить пароль")
     private static SelenideElement restorePassword;
 
+    @Step("Получение текста заголовка 'Вход'")
+    public String getHeadingSearchLogin(){
+        headingSearchLogin.shouldBe(Condition.visible);
+        return headingSearchLogin.getText();
+    }
     @Step("Ввод значения {email} в поле 'Email'")
     public void setEmail (String email) {
         emailInputField.click();
