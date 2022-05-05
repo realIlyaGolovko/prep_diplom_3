@@ -18,14 +18,15 @@ public class LoginPage {
     //локатор ссылки 'Зарегистрироваться'
     @FindBy(how = How.LINK_TEXT, using = "Зарегистрироваться")
     private static SelenideElement registerLink;
+    //локатор ссылки 'Восстановить пароль'
+    @FindBy(how = How.LINK_TEXT, using = "Восстановить пароль")
+    private static SelenideElement restorePassword;
 
     @Step("Ввод значения {email} в поле 'Email'")
     public void setEmail (String email) {
         emailInputField.click();
         emailInputField.setValue(email);
     }
-
-
     @Step("Ввод значения {password} в поле 'Пароль'")
     public void setPassword(String password) {
         passwordInputField.click();
@@ -36,15 +37,20 @@ public class LoginPage {
     public void clickSignInButton() {
         signInrButton.click();
     }
+
     @Step("Заполнение полей на странице 'Вход' и клик по кнопке 'Войти'")
-    public void fillRegisterForm(String email, String password) {
+    public void fillLoginForm(String email, String password) {
         setEmail(email);
         setPassword(password);
         clickSignInButton();
     }
-    @Step("Клик по ссылки «Зарегистрироваться»")
+    @Step("Клик по ссылки 'Зарегистрироваться'")
     public void clickRegisterLink() {
         registerLink.scrollTo();
         registerLink.click();
+    }
+    @Step("Клик по ссылке 'Восстановить пароль'")
+    public void clickRestorePassword() {
+        restorePassword.click();
     }
 }

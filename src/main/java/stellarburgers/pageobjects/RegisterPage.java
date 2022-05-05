@@ -20,20 +20,25 @@ public class RegisterPage {
     @FindBy(how = How.XPATH, using = ".//button[text()='Зарегистрироваться']")
     private static SelenideElement registerButton;
     //локатор надписи "Некорректный пароль"
-    @FindBy(how = How.XPATH,using = ".//p[text()='Некорректный пароль']")
+    @FindBy(how = How.XPATH, using = ".//p[text()='Некорректный пароль']")
     private static SelenideElement errorPasswordMsg;
-
+    //локатор ссылки 'Зарегистрироваться'
+    @FindBy(how = How.LINK_TEXT, using = "Зарегистрироваться")
+    private static SelenideElement registerLink;
+    //локатор ссылки 'Войти'
+    @FindBy(how = How.LINK_TEXT, using = "Войти")
+    private static SelenideElement signInrLink;
 
 
     @Step("Ввод значения {name} в поле 'Имя'")
-    public void setName (String name) {
+    public void setName(String name) {
         nameInputField.click();
         nameInputField.setValue(name);
     }
 
 
     @Step("Ввод значения {email} в поле 'Email'")
-    public void setEmail (String email) {
+    public void setEmail(String email) {
         emailInputField.click();
         emailInputField.setValue(email);
     }
@@ -51,15 +56,22 @@ public class RegisterPage {
     }
 
     @Step("Заполнение полей на странице 'Регистрация' и клик по кнопке 'Зарегистрироваться'")
-    public void fillRegisterForm(String name,String email, String password) {
+    public void fillRegisterForm(String name, String email, String password) {
         setName(name);
         setEmail(email);
         setPassword(password);
         clickRegisterButton();
     }
+
     @Step("Отображение сообщения об ошибке при невалидном пароле")
-    public String getPasswordErrorMsg(){
+    public String getPasswordErrorMsg() {
         errorPasswordMsg.shouldBe(Condition.visible);
         return errorPasswordMsg.getText();
+    }
+
+    @Step("Клик по ссылке 'Войти'")
+    public void clickSignInLink() {
+        signInrLink.scrollTo();
+        signInrLink.click();
     }
 }
