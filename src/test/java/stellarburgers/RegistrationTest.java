@@ -20,7 +20,6 @@ public class RegistrationTest extends CommonTest {
     private static User user;
     private static UserClient userClient;
     private static UserCredentials userCredentials;
-    private static String token;
 
     @Before
     public void CreateUser() {
@@ -31,17 +30,18 @@ public class RegistrationTest extends CommonTest {
 
     @After
     public void deleteUser() {
+        ValidatableResponse validatableResponse = userClient.login(userCredentials);
+        String token = validatableResponse.extract().jsonPath().getString("accessToken");
         userClient.deleteUser(user, token);
     }
 
     @Test
     @DisplayName("Проверка успешной регистрации")
-    public void registerUserWithValidCredentials() {
+    public void UserCanBeRegisterWithValidCredentials() {
         RegisterPage registerPage = open(REGISTER_PAGE_URL, RegisterPage.class);
         registerPage.fillRegisterForm(user.getName(), user.getEmail(), user.getPassword());
-        ValidatableResponse validatableResponse = userClient.login(userCredentials);
-        token = validatableResponse.extract().jsonPath().getString("accessToken");
         LoginPage loginPage=page(LoginPage.class);
         Assert.assertEquals("Вход",loginPage.getHeadingSearchLogin());
     }
+
 }
