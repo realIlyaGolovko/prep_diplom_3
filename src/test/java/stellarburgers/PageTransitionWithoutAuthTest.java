@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.page;
 import static stellarburgers.pageobjects.PageConstants.MAIN_PAGE_URL;
 
 public class PageTransitionWithoutAuthTest extends CommonTest {
-    MainPage mainPage;
+    private static MainPage mainPage;
     @Before
     public void openMainPage() {
         mainPage = open(MAIN_PAGE_URL, MainPage.class);
