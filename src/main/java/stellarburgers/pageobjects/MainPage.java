@@ -37,6 +37,10 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = ".//h2[text()='Начинки']")
     private static SelenideElement fillingSection;
 
+    //локатор активного раздела
+    @FindBy(how = How.CSS,using = ".tab_tab_type_current__2BEPc")
+    public SelenideElement activeSection;
+
     @Step("Получение текста заголовка 'Соберите бургер'")
     public String getHeadingCreateBurger(){
         headingCreateBurger.shouldBe(Condition.visible);
@@ -55,12 +59,12 @@ public class MainPage {
     }
 
     @Step("Клик по разделу «Соусы»")
-    public static void clickSauceButton() {
+    public  void clickSauceButton() {
         saucesButton.click();
     }
 
     @Step("Клик по разделу «Начинки»")
-    public static void clickFillingButton() {
+    public void clickFillingButton() {
         fillingButton.shouldBe(enabled).click();
     }
 
@@ -77,5 +81,9 @@ public class MainPage {
     @Step("Проверка корректности отображения раздела Начинки")
     public void checkFillingSectionText() {
         fillingSection.shouldHave(exactText("Начинки"));
+    }
+    @Step("Получение текста активного раздела")
+    public String getActiveSectionText(){
+         return activeSection.getText();
     }
 }
