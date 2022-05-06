@@ -19,13 +19,14 @@ public class UserClient extends CommonRestClient {
     }
 
     @Step("Запрос на авторизацию пользователя c {userCredentials}")
-    public ValidatableResponse login(UserCredentials userCredentials) {
-        return given().log().all()
+    public String login(UserCredentials userCredentials) {
+         ValidatableResponse validatableResponse=given().log().all()
                 .spec(getBaseSpec())
                 .body(userCredentials)
                 .when()
                 .post(LOGIN_USER_PATH)
                 .then().log().all();
+         return validatableResponse.extract().jsonPath().getString("accessToken");
     }
     @Step("Запрос на удаление созданного пользователя {user}")
     public void deleteUser(User user, String token) {

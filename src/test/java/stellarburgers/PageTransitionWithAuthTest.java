@@ -38,8 +38,7 @@ public class PageTransitionWithAuthTest extends CommonTest {
         mainHeaderPage.clickPersonalAreaButton();
         loginPage = page(LoginPage.class);
         loginPage.fillLoginForm(userCredentials.getEmail(), userCredentials.getPassword());
-        ValidatableResponse validatableResponse = userClient.login(userCredentials);
-        token = validatableResponse.extract().jsonPath().getString("accessToken");
+        token = userClient.login(userCredentials);
         mainHeaderPage.clickPersonalAreaButton();
     }
 

@@ -1,7 +1,6 @@
 package stellarburgers;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,8 +30,7 @@ public class LoginTest extends CommonTest {
 
     @After
     public void deleteUser() {
-        ValidatableResponse validatableResponse = userClient.login(userCredentials);
-        String token = validatableResponse.extract().jsonPath().getString("accessToken");
+        String token = userClient.login(userCredentials);
         userClient.deleteUser(user, token);
     }
 

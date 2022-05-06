@@ -30,8 +30,7 @@ public class RegistrationTest extends CommonTest {
 
     @After
     public void deleteUser() {
-        ValidatableResponse validatableResponse = userClient.login(userCredentials);
-        String token = validatableResponse.extract().jsonPath().getString("accessToken");
+        String token = userClient.login(userCredentials);
         userClient.deleteUser(user, token);
     }
 
