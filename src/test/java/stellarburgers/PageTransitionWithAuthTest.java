@@ -1,15 +1,13 @@
 package stellarburgers;
 
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import stellarburgers.api.user.User;
-import stellarburgers.api.user.UserClient;
 import stellarburgers.api.user.UserCredentials;
-import stellarburgers.common.CommonTest;
+import stellarburgers.common.CommonUserTest;
 import stellarburgers.pageobjects.LoginPage;
 import stellarburgers.pageobjects.MainHeaderPage;
 import stellarburgers.pageobjects.MainPage;
@@ -18,9 +16,7 @@ import stellarburgers.pageobjects.ProfilePage;
 import static com.codeborne.selenide.Selenide.*;
 import static stellarburgers.pageobjects.PageConstants.MAIN_PAGE_URL;
 
-public class PageTransitionWithAuthTest extends CommonTest {
-    private static User user;
-    private static UserClient userClient;
+public class PageTransitionWithAuthTest extends CommonUserTest {
     private static String token;
     private static MainPage mainPage;
     private static MainHeaderPage mainHeaderPage;
@@ -31,7 +27,6 @@ public class PageTransitionWithAuthTest extends CommonTest {
     public void setUP() {
         user = User.getRandomUserWithGivenPassword(6, 12);
         UserCredentials userCredentials = UserCredentials.from(user);
-        userClient = new UserClient();
         userClient.create(user);
         mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainHeaderPage = page(MainHeaderPage.class);
