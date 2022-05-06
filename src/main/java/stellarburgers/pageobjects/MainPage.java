@@ -17,13 +17,14 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = ".//button[text()='Войти в аккаунт']")
     private static SelenideElement signInButton;
     // Раздел «Конструктор»
-    //локатор кнопки «Булки»
-    @FindBy(how = How.XPATH, using = "//*[text()='Булки']")
+    //локатор кнопки "Булки"
+    @FindBy(how = How.XPATH,using = "//span[contains(text(),'Булки')]")
     private static SelenideElement bunButton;
-    //локатор кнопки «Соусы»
-    @FindBy(how = How.XPATH, using = "//*[text()='Соусы']")
+    //локатор кнопки "Соусы"
+    @FindBy(how = How.XPATH,using = "//span[contains(text(),'Соусы')]")
     private static SelenideElement saucesButton;
-    @FindBy(how = How.XPATH, using = "//*[text()='Начинки']")
+    //локатор кнопки "Начинки"
+    @FindBy(how = How.XPATH,using = "//span[contains(text(),'Начинки')]")
     private static SelenideElement fillingButton;
 
     //локатор раздел «Булки»
@@ -49,7 +50,7 @@ public class MainPage {
 
     // Раздел «Конструктор»
     @Step("Клик по разделу «Булки»")
-    public static void clickBunButton() {
+    public  void clickBunButton() {
         bunButton.shouldBe(enabled).click();
     }
 
