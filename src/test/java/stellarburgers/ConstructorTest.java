@@ -16,8 +16,20 @@ public class ConstructorTest {
        mainPage=open(MAIN_PAGE_URL,MainPage.class);
     }
     @Test
+    @DisplayName("При открытии главной страницы отображается рздел 'Булки'")
+    public void manePageDefaultOpenBunSection(){
+    }
+    @Test
+    @DisplayName("Переход к разделу 'Соусы'")
+    public void transitionToSaucesSection(){
+    }
+    @Test
+    @DisplayName("Переход к разделу 'Начинки'")
+    public void transitionToFillingSection(){
+    }
+    @Test
     @DisplayName("Переход к разделу 'Булки'")
-    public void transitionToTheBunSection(){
+    public void transitionToBunSection(){
     }
 
 }
