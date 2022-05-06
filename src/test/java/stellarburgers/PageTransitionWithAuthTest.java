@@ -25,20 +25,26 @@ public class PageTransitionWithAuthTest extends CommonUserTest {
 
     @Before
     public void setUP() {
+        //создали нового пользоватлея
         user = User.getRandomUserWithGivenPassword(6, 12);
         UserCredentials userCredentials = UserCredentials.from(user);
         userClient.create(user);
+        token = userClient.login(userCredentials);
+        //открыли главную страницу
         mainPage = open(MAIN_PAGE_URL, MainPage.class);
         mainHeaderPage = page(MainHeaderPage.class);
+        //перешли в личный кабинет
         mainHeaderPage.clickPersonalAreaButton();
         loginPage = page(LoginPage.class);
+        //перешли на форму логина и авторизовались
         loginPage.fillLoginForm(userCredentials.getEmail(), userCredentials.getPassword());
-        token = userClient.login(userCredentials);
+        //перешли в личный кабнет
         mainHeaderPage.clickPersonalAreaButton();
     }
 
     @After
     public void deleteUser() {
+        //почистили тестовые данные
         userClient.deleteUser(user, token);
     }
 
@@ -62,11 +68,12 @@ public class PageTransitionWithAuthTest extends CommonUserTest {
         mainHeaderPage.clickLogoLink();
         Assert.assertEquals("Соберите бургер", mainPage.getHeadingCreateBurger());
     }
+
     @Test
     @DisplayName("Выход по кнопке 'Выйти' в личном кабинете")
-    public void UserCanSignOutWithClickExitButton(){
+    public void UserCanSignOutWithClickExitButton() {
         ProfilePage profilePage = page(ProfilePage.class);
         profilePage.clickExitButton();
-        Assert.assertEquals("Вход",loginPage.getHeadingSearchLogin());
+        Assert.assertEquals("Вход", loginPage.getHeadingSearchLogin());
     }
 }

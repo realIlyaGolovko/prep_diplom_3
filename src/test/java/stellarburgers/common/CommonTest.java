@@ -5,7 +5,7 @@ import org.junit.After;
 import org.junit.BeforeClass;
 
 import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
-
+//общий класс для тестов с настройками
 public class CommonTest {
     @BeforeClass
     public static void setUp() {

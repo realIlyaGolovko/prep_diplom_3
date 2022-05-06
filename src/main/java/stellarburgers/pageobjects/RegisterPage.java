@@ -22,10 +22,10 @@ public class RegisterPage {
     //локатор надписи "Некорректный пароль"
     @FindBy(how = How.XPATH, using = ".//p[text()='Некорректный пароль']")
     private static SelenideElement errorPasswordMsg;
-    //локатор ссылки 'Зарегистрироваться'
+    //локатор ссылки "Зарегистрироваться"
     @FindBy(how = How.LINK_TEXT, using = "Зарегистрироваться")
     private static SelenideElement registerLink;
-    //локатор ссылки 'Войти'
+    //локатор ссылки "Войти"
     @FindBy(how = How.LINK_TEXT, using = "Войти")
     private static SelenideElement signInrLink;
 
@@ -55,7 +55,7 @@ public class RegisterPage {
         registerButton.click();
     }
 
-    @Step("Заполнение полей на странице 'Регистрация' и клик по кнопке 'Зарегистрироваться'")
+    @Step("Заполнение полей на странице 'Регистрация' значениями {name},{email},{password} и клик по кнопке 'Зарегистрироваться'")
     public void fillRegisterForm(String name, String email, String password) {
         setName(name);
         setEmail(email);

@@ -7,11 +7,11 @@ import org.openqa.selenium.support.How;
 
 public class ForgotPasswordPage {
 
-    //локатор ссылки 'Войти'
+    //локатор ссылки "Войти"
     @FindBy(how = How.LINK_TEXT, using = "Войти")
     private static SelenideElement signInrLink;
 
-    @Step("Нажать кнопку 'Войти'")
+    @Step("Нажать ссылку 'Войти'")
     public void clickSignInrLink() {
         signInrLink.scrollTo();
         signInrLink.click();

@@ -21,7 +21,7 @@ public class ProfilePage {
         profileLink.shouldBe(visible).click();
     }
 
-    @Step("Клик по кнопке «Выход»")
+    @Step("Клик по кнопке 'Выход'")
     public void clickExitButton() {
         exitButton.shouldBe(enabled).click();
     }

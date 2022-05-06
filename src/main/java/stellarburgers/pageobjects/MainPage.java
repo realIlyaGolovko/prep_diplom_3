@@ -16,7 +16,7 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = ".//button[text()='Войти в аккаунт']")
     private static SelenideElement signInButton;
 
-    // Раздел «Конструктор»
+    // Раздел "Конструктор"
     //локатор кнопки "Булки"
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'Булки')]")
     private static SelenideElement bunButton;

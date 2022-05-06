@@ -19,12 +19,14 @@ public class RegistrationTest extends CommonUserTest {
 
     @Before
     public void CreateUser() {
-        user = User.getRandomUserWithGivenPassword(6,12);
+        //иницировали нового пользователя
+        user = User.getRandomUserWithGivenPassword(6, 12);
         userCredentials = UserCredentials.from(user);
     }
 
     @After
     public void deleteUser() {
+        //почистили тестовые данные
         String token = userClient.login(userCredentials);
         userClient.deleteUser(user, token);
     }
@@ -34,8 +36,8 @@ public class RegistrationTest extends CommonUserTest {
     public void UserCanBeRegisterWithValidCredentials() {
         RegisterPage registerPage = open(REGISTER_PAGE_URL, RegisterPage.class);
         registerPage.fillRegisterForm(user.getName(), user.getEmail(), user.getPassword());
-        LoginPage loginPage=page(LoginPage.class);
-        Assert.assertEquals("Вход",loginPage.getHeadingSearchLogin());
+        LoginPage loginPage = page(LoginPage.class);
+        Assert.assertEquals("Вход", loginPage.getHeadingSearchLogin());
     }
 
 }

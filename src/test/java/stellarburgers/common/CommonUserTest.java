@@ -4,8 +4,9 @@ import stellarburgers.api.user.User;
 import stellarburgers.api.user.UserClient;
 import stellarburgers.api.user.UserCredentials;
 
-public class CommonUserTest extends CommonTest{
+//общий класс для тестов, где применяется апи
+public class CommonUserTest extends CommonTest {
     protected User user;
-    protected UserClient userClient=new UserClient();
+    protected UserClient userClient = new UserClient();
     protected UserCredentials userCredentials;
 }

@@ -18,15 +18,18 @@ public class LoginTest extends CommonUserTest {
 
     @Before
     public void CreateUser() {
+        //создали рандомного пользователя
         user = User.getRandomUserWithGivenPassword(6, 12);
         userClient.create(user);
         userCredentials = UserCredentials.from(user);
+        //открылм главную страницу
         mainPage=open(MAIN_PAGE_URL, MainPage.class);
 
     }
 
     @After
     public void deleteUser() {
+        //почистили тестовые данные
         String token = userClient.login(userCredentials);
         userClient.deleteUser(user, token);
     }
