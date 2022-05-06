@@ -1,9 +1,10 @@
 package stellarburgers.common;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import org.junit.After;
 import org.junit.BeforeClass;
+
+import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 
 public class CommonTest {
     @BeforeClass
@@ -14,6 +15,6 @@ public class CommonTest {
 
     @After
     public void clearState() {
-        Selenide.clearBrowserLocalStorage();
+        clearBrowserLocalStorage();
     }
 }
